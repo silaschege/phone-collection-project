@@ -10,6 +10,7 @@ import javax.swing.JFileChooser;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.text.SimpleDateFormat;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -54,6 +55,31 @@ public class Mian_window extends javax.swing.JFrame {
         }
     }
     
+    public boolean checkInputs()
+    {
+        if(
+                text_ID_phone.getText()==null
+                ||text_Phone_name.getText()==null
+                ||text_Imei.getText()==null
+                ||text_Customer_name.getText()==null
+                ||text_Date_of_invoice.getDate()==null
+                ||text_Issue.getText()==null
+           )
+        {
+                   return false;
+                           }
+        else{
+            try{
+               Float.parseFloat(text_Imei.getText());
+               return true;
+            }
+            catch(Exception ex){
+              return false;   
+            }
+        }
+                           
+    }
+     
     //resize image
     
     public ImageIcon ResizeImage(String ImagePath,byte [] pic)
@@ -91,10 +117,10 @@ public class Mian_window extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        text_id_phone = new javax.swing.JTextField();
-        text_issue = new javax.swing.JTextField();
-        text_customer_name = new javax.swing.JTextField();
-        text_Phone_Name = new javax.swing.JTextField();
+        text_ID_phone = new javax.swing.JTextField();
+        text_Issue = new javax.swing.JTextField();
+        text_Customer_name = new javax.swing.JTextField();
+        text_Phone_name = new javax.swing.JTextField();
         lbl_image = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -107,8 +133,8 @@ public class Mian_window extends javax.swing.JFrame {
         Button_last = new javax.swing.JButton();
         Button_previous = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
-        text_imei = new javax.swing.JTextField();
-        dateChooser_Date_of_invoice = new datechooser.beans.DateChooserCombo();
+        text_Imei = new javax.swing.JTextField();
+        text_Date_of_invoice = new datechooser.beans.DateChooserCombo();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -130,7 +156,7 @@ public class Mian_window extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel6.setText("Image:");
 
-        text_issue.setBorder(null);
+        text_Issue.setBorder(null);
 
         lbl_image.setBackground(new java.awt.Color(204, 255, 255));
         lbl_image.setOpaque(true);
@@ -212,7 +238,7 @@ public class Mian_window extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel8.setText("Imei:");
 
-        dateChooser_Date_of_invoice.setCurrentView(new datechooser.view.appearance.AppearancesList("Swing",
+        text_Date_of_invoice.setCurrentView(new datechooser.view.appearance.AppearancesList("Swing",
             new datechooser.view.appearance.ViewAppearance("custom",
                 new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
                     new java.awt.Color(0, 0, 0),
@@ -253,8 +279,8 @@ public class Mian_window extends javax.swing.JFrame {
                 (datechooser.view.BackRenderer)null,
                 false,
                 true)));
-    dateChooser_Date_of_invoice.setFormat(2);
-    dateChooser_Date_of_invoice.setWeekStyle(datechooser.view.WeekDaysStyle.SHORT);
+    text_Date_of_invoice.setFormat(2);
+    text_Date_of_invoice.setWeekStyle(datechooser.view.WeekDaysStyle.SHORT);
 
     javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
     jPanel1.setLayout(jPanel1Layout);
@@ -282,18 +308,18 @@ public class Mian_window extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(text_Phone_Name)
-                                            .addComponent(text_id_phone))
+                                            .addComponent(text_Phone_name)
+                                            .addComponent(text_ID_phone))
                                         .addGap(88, 88, 88))
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(text_imei)
+                                        .addComponent(text_Imei)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addGroup(jPanel1Layout.createSequentialGroup()
                                                 .addGap(0, 0, Short.MAX_VALUE)
                                                 .addComponent(Button_First, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(text_issue, javax.swing.GroupLayout.Alignment.LEADING))
+                                            .addComponent(text_Issue, javax.swing.GroupLayout.Alignment.LEADING))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(Button_next, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
@@ -304,7 +330,7 @@ public class Mian_window extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(16, 16, 16)
-                                        .addComponent(dateChooser_Date_of_invoice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(text_Date_of_invoice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(lbl_image, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -313,7 +339,7 @@ public class Mian_window extends javax.swing.JFrame {
                         .addGap(41, 41, 41)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(text_customer_name)
+                        .addComponent(text_Customer_name)
                         .addGap(86, 86, 86)))
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(14, 14, 14)
@@ -337,27 +363,27 @@ public class Mian_window extends javax.swing.JFrame {
             .addGap(60, 60, 60)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                 .addComponent(jLabel1)
-                .addComponent(text_id_phone, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(text_ID_phone, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(jLabel2)
-                .addComponent(text_Phone_Name, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(text_Phone_name, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGap(18, 18, 18)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(jLabel8)
-                .addComponent(text_imei, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(text_Imei, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGap(18, 18, 18)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(text_customer_name, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(text_Customer_name, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(jLabel3))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(dateChooser_Date_of_invoice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(text_Date_of_invoice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGap(18, 18, 18)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jLabel5)
-                .addComponent(text_issue, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(text_Issue, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(18, 18, 18)
@@ -404,7 +430,35 @@ public class Mian_window extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void Button_insertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_insertActionPerformed
-        // TODO add your handling code here:
+       if(checkInputs () && ImagePath !=null )
+       {
+           try {
+               Connection con=getConnection (); 
+               PreparedStatement ps=con.prepareStatement("INSERT INTO phones(ID_phones,Phone_name,Imei,Customer_name,Date_of_invoice,Issue,Image" +"values(?,?,?,?) ");
+           ps.setString(1,text_ID_phones());
+           ps.setString(2,text_Phone_name());
+           ps.setString(3,text_Imei());
+           ps.setString(4,text_Customer_name());
+           ps.setString(text_Date_of_invoice());
+           ps.setString(text_Isssue());
+           InputStream img=new FileInputStream(new File(ImgPath));
+           ps.setBlob(4,img);
+           ps.executeUpadate();
+            JOptionPane.showMessageDialog(null,"Data");
+           
+           } 
+           catch (SQLException ex) {
+               JOptionPane.showMessageDialog(null,ex.getMessage());
+           }
+       }
+       else{
+           JOptionPane.showMessageDialog(null,"One or more fileds are empty");
+       }
+       System.out.println("Phone name=>"+text_Phone_name.getText());
+       System.out.println("Imei=>"+text_Imei.getText());
+       System.out.println("Customer Name=>"+text_Customer_name.getText());
+       System.out.println("Issue=>"+text_Issue.getText());
+       System.out.println("image=>"+ImagePath);
     }//GEN-LAST:event_Button_insertActionPerformed
 
     private void Button_UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_UpdateActionPerformed
@@ -444,6 +498,7 @@ public class Mian_window extends javax.swing.JFrame {
             File selectedFile=file.getSelectedFile();
             String path= selectedFile.getAbsolutePath();
             lbl_image.setIcon(ResizeImage(path,null));
+            ImgPath= path;
         }
         else{
             System.out.println("No File Selected");
@@ -497,7 +552,6 @@ public class Mian_window extends javax.swing.JFrame {
     private datechooser.beans.DateChooserDialog dateChooserDialog1;
     private datechooser.beans.DateChooserDialog dateChooserDialog2;
     private datechooser.beans.DateChooserDialog dateChooserDialog3;
-    private datechooser.beans.DateChooserCombo dateChooser_Date_of_invoice;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -509,11 +563,12 @@ public class Mian_window extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel lbl_image;
-    private javax.swing.JTextField text_Phone_Name;
-    private javax.swing.JTextField text_customer_name;
-    private javax.swing.JTextField text_id_phone;
-    private javax.swing.JTextField text_imei;
-    private javax.swing.JTextField text_issue;
+    private javax.swing.JTextField text_Customer_name;
+    private datechooser.beans.DateChooserCombo text_Date_of_invoice;
+    private javax.swing.JTextField text_ID_phone;
+    private javax.swing.JTextField text_Imei;
+    private javax.swing.JTextField text_Issue;
+    private javax.swing.JTextField text_Phone_name;
     // End of variables declaration//GEN-END:variables
 
    
